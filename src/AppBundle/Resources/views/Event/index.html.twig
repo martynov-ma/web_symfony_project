@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Мероприятия{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/event.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="entity-header col-md-10 col-md-offset-1 content">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 content">
+                <span>Мероприятия</span>
+            </div>
+            <div class="col-xs-7 col-xs-offset-2 col-sm-9 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-7 col-lg-offset-3 content">
+                <div class="entity-group-by">
+                    <div class="item-menu"><a href="#">Кино</a></div>
+                    <div class="item-menu"><a href="#">Спектакли</a></div>
+                    <div class="item-menu"><a href="#">Концерты</a></div>
+                    <div class="item-menu"><a href="#">Спорт</a></div>
+                    <div class="item-menu"><a href="#">Вечеринки</a></div>
+                    <div class="item-menu"><a href="#">Детям</a></div>
+                    <div class="item-menu"><a href="#">Другое</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 content">
+            <table class="table table-responsive ">
+                <thead class="table-head">
+                <th></th>
+                <th>Афиша</th>
+                <th>Описание</th>
+                <th>Место проведения</th>
+                <th>Дата проведения</th>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td></td>
+                        <td class="col-xs-4 col-sm-4 col-md-3 col-lg-3"><img src="../img/posters/{{ event.poster }}" class=" img-responsive poster"></td>
+                        <td>
+                            <div><a class="event-link" href="event/{{ event.id }}">{{ event.name }}</a></div>
+                            <div class="description">{{ event.description }}</div>
+                        </td>
+                        <td>{{ event.place is empty ? "not specified" : event.place.name }}</td>
+                        <td>{{ event.date.format("d M Y")  }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if is_granted("ROLE_MANAGER") or is_granted("ROLE_ADMIN") %}
+                <button id="create-btn" class="white-btn"><a href="{{ path('app_event_create') }}">Добавить мероприятие</a></button>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

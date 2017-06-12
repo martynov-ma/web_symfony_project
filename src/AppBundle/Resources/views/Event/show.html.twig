@@ -1,0 +1,49 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Мероприятие{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/event.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="row event">
+        <div class="col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1">
+            <img src="../img/posters/{{ event.poster }}" class=" img-responsive">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="buy-ticket">
+                    <a href="#">Купить билет</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-7 col-md-6">
+            <div>
+                <h1>{{ event.name }}</h1>
+                <div>{{ event.description }}</div>
+            </div>
+            <div>
+                <table class="table table-responsive event-table">
+                    <thead class="event-table-head">
+                        <th>Тип</th>
+                        <th>Место проведения</th>
+                        <th>Дата проведения</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ event.type }}</td>
+                        <td>{{ event.place is empty ? "not specified" : event.place.name }}</td>
+                        <td>{{ event.date.format("d M Y")  }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="event-edit">
+                {% if is_granted("ROLE_MANAGER") or is_granted("ROLE_ADMIN") %}
+                    <button class="white-btn"><a href="/events/edit/{{ event.id }}">Изменить</a></button>
+                    <button class="white-btn"><a href="/events/delete/{{ event.id }}">Удалить</a></button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

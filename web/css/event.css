@@ -1,0 +1,45 @@
+.event {
+    margin-top: 20px;
+    margin-bottom: 300px;
+}
+
+.buy-ticket {
+    background-color: #189ed5;
+    margin-top: 15px;
+}
+
+.buy-ticket:hover {
+    background-color: #1492c5;
+}
+
+.buy-ticket a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 3px 0;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.event-table {
+    margin-top: 30px;
+}
+
+.event-table-head {
+    background-color: #a5cfe0;
+}
+
+.event-link {
+    font-weight: bold;
+    color: #363635;
+    font-size: 25px;
+}
+
+.event-link:hover {
+    color: #189ed5;
+    text-decoration: none;
+}
+
+.description {
+    text-align: justify;
+}

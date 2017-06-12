@@ -1,0 +1,168 @@
+html {
+    min-width: 613px;
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background-color: #dddddd;
+    margin-bottom: 85px;
+}
+
+header {
+    background: url(../img/header_bg.png) repeat-x left top;
+}
+
+.main-logo {
+    background-image: url(../img/logo.png);
+    height: 115px;
+    width: 126px;
+    margin-left: 10px;
+}
+
+#main-link {
+    display: block;
+    height: 100%;
+}
+
+.login-form {
+    display: block;
+    font-size: 13px;
+}
+
+.login-form-row {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    float: right;
+    margin-top: 15px;
+}
+
+.login-form-row label {
+    text-shadow: #111 1px 1px 1px;
+    color: #189ed5;
+    margin-left: 25px;
+    margin-right: 5px;
+    float: right;
+}
+
+.login-form-row input {
+    float: right;
+    height: 18px;
+    width: 142px;
+    border: none;
+    margin: 0;
+    padding: 0 6px;
+}
+
+.login-form-row button {
+    margin-top: 3px;
+    float: right;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+
+.login-form-row button:hover {
+    color: #fff;
+}
+
+.login-form-control {
+    font-weight: bold;
+    color: #fff;
+    float: right;
+    margin-top: 10px;
+}
+
+.login-form-control a {
+    text-shadow: #111 1px 1px 1px;
+    text-decoration: none;
+    color: #189ed5;
+}
+
+.login-form-control a:hover {
+    color: #fff;
+}
+
+.login-form-row-auth {
+    font-weight: bold;
+    color: #363635;
+    float: right;
+    margin-top: 86px;
+}
+
+.login-form-row-auth a {
+    text-decoration: none;
+    color: #363635;
+}
+
+.login-form-row-auth a:hover {
+    color: #fff;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #363635;
+    height: 85px;
+}
+
+.footer-links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.footer-item {
+    padding-left: 15px;
+    float: right;
+}
+
+.footer-item a {
+    font-weight: bold;
+    text-shadow: #111 1px 1px 1px;
+    text-decoration: none;
+    color: #189ed5;
+}
+
+.footer-item a:hover {
+    color: #fff;
+}
+
+#form label {
+    margin-top: 10px;
+}
+
+#form input {
+    border-radius: 0;
+    height: 30px;
+    border: solid 1px;
+    padding: 0 6px;
+}
+
+#form textarea {
+    border-radius: 0;
+    border: solid 1px;
+}
+
+#form select {
+    border-radius: 0;
+    border: solid 1px;
+}
+
+#form button {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    height: 30px;
+    border: solid 1px;
+    font-weight: bold;
+    padding: 0 25px;
+    float: right;
+}
+
+#form button:hover {
+    background-color: #cecece;
+}

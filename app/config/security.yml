@@ -1,0 +1,47 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+        in_memory:
+            memory: ~
+
+    encoders:
+        AppBundle\Entity\User: plaintext
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: /
+                check_path: login_check
+            logout:
+                path: /logout
+                target: /
+
+    access_control:
+        - { path: /places/create*, role: [ ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /places/edit/.*, role: [ ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /places/delete/.*, role: [ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /events/create*, role: [ ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /events/edit/.*, role: [ ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /events/delete/.*, role: [ ROLE_MANAGER, ROLE_ADMIN ] }
+        - { path: /signup, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            # activate different ways to authenticate
+
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            #form_login: ~

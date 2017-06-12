@@ -1,0 +1,74 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Места проведения{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="entity-header col-md-10 col-md-offset-1 content">
+            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3 content">
+                <span>Места проведения</span>
+            </div>
+            <div class="col-xs-9 col-sm-8 col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-2 content">
+                <div class="entity-group-by">
+                    <div class="item-menu"><a href="#">Кинотеатры</a></div>
+                    <div class="item-menu"><a href="#">Театры</a></div>
+                    <div class="item-menu"><a href="#">Спорт</a></div>
+                    <div class="item-menu"><a href="#">Концерты</a></div>
+                    <div class="item-menu"><a href="#">Клубы</a></div>
+                    <div class="item-menu"><a href="#">Другое</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 content news-header ">
+            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 content">
+                <span>Введите город</span>
+            </div>
+            <div class="col-xs-7 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-2 content">
+                <div class="city-search">
+                    <input type="text"/>
+                    <button type="submit">Найти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 content">
+            <table class="table table-responsive">
+                <thead class="table-head">
+                <th></th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Описание</th>
+                <th>Адрес</th>
+                <th>Количество мероприятий</th>
+                {% if is_granted("ROLE_MANAGER") or is_granted("ROLE_ADMIN") %}
+                    <th>Управление</th>
+                {% endif %}
+                </thead>
+                <tbody class="table-body">
+                {% for place in places %}
+                    <tr>
+                        <td></td>
+                        <td>{{ place.name }}</td>
+                        <td>{{ place.type }}</td>
+                        <td>{{ place.description }}</td>
+                        <td>{{ place.address }}</td>
+                        <td>{{ place.events.count }}</td>
+                        {% if is_granted("ROLE_MANAGER") or is_granted("ROLE_ADMIN") %}
+                            <td>
+                                <button class="white-btn"><a href="places/edit/{{ place.id }}">Изменить</a></button>
+                                <button class="white-btn"><a href="places/delete/{{ place.id }}">Удалить</a></button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if is_granted("ROLE_MANAGER") or is_granted("ROLE_ADMIN") %}
+                <button id="create-btn" class="white-btn"><a href="{{ path('app_place_create') }}">Добавить место проведения</a></button>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
